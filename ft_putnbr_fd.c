@@ -6,7 +6,7 @@
 /*   By: dcano-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:00:24 by dcano-ro          #+#    #+#             */
-/*   Updated: 2022/01/28 17:01:31 by dcano-ro         ###   ########.fr       */
+/*   Updated: 2022/02/13 13:37:24 by dcano-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -42,25 +42,13 @@ static	int	digits_n(int n)
 	return (i);
 }
 
-int	ft_putnbr_fd(int n, int fd)
+static int	main_logic(int n, int fd, int res)
 {
 	long	ascii;
 	long	copy;
 	int		i;
-	int		res;
 
-	res = 0;
-	if (n == 0)
-	{
-		write(fd, "0", 1);
-		return (1);
-	}
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return (11);
-	}
-	else if (n < 0)
+	if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
 		n = -n;
@@ -79,4 +67,19 @@ int	ft_putnbr_fd(int n, int fd)
 	while (i-- > 0)
 		ft_putchar_fd('0', fd);
 	return (res);
+}
+
+int	ft_putnbr_fd(int n, int fd)
+{
+	if (n == 0)
+	{
+		write(fd, "0", 1);
+		return (1);
+	}
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return (11);
+	}
+	return (main_logic(n, fd, 0));
 }

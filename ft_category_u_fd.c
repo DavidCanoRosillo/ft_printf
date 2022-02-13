@@ -6,7 +6,7 @@
 /*   By: dcano-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:00:24 by dcano-ro          #+#    #+#             */
-/*   Updated: 2022/01/28 17:48:14 by dcano-ro         ###   ########.fr       */
+/*   Updated: 2022/02/13 12:59:02 by dcano-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -42,7 +42,7 @@ static	int	digits_n(unsigned int n)
 	return (i);
 }
 
-int	ft_category_u_fd(unsigned int n, int fd)
+int	category_u(unsigned int n, int fd)
 {
 	long	ascii;
 	long	copy;

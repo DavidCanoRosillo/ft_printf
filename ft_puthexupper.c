@@ -6,7 +6,7 @@
 /*   By: dcano-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:30:52 by dcano-ro          #+#    #+#             */
-/*   Updated: 2022/01/28 17:31:11 by dcano-ro         ###   ########.fr       */
+/*   Updated: 2022/02/13 13:29:50 by dcano-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -23,7 +23,7 @@ static void	ft_puthex_lower(int nbr)
 	lower_hex[4] = 'E';
 	lower_hex[5] = 'F';
 	if (nbr >= 10)
-	write(1, lower_hex + nbr - 10, 1);
+		write(1, lower_hex + nbr - 10, 1);
 	else
 	{
 		c = nbr + 48;
@@ -44,7 +44,7 @@ static long	reverse(long num)
 	return (rev_num);
 }
 
-static	int	digits_n(unsigned int n)
+static int	digits_n(unsigned int n)
 {
 	int	i;
 
@@ -57,18 +57,21 @@ static	int	digits_n(unsigned int n)
 	return (i);
 }
 
+static int	print_zero(int fd)
+{
+	write(fd, "0", 1);
+	return (1);
+}
+
 int	ft_puthexupper_fd(unsigned int n, int fd)
 {
 	unsigned int	copy;
-	int		i;
-	int		res;
+	int				i;
+	int				res;
 
 	res = 0;
 	if (n == 0)
-	{
-		write(fd, "0", 1);
-		return (1);
-	}
+		return (print_zero(fd));
 	copy = reverse (n);
 	i = digits_n(n);
 	while (copy != 0)

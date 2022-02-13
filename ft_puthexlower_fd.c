@@ -6,7 +6,7 @@
 /*   By: dcano-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:00:24 by dcano-ro          #+#    #+#             */
-/*   Updated: 2022/01/28 17:32:48 by dcano-ro         ###   ########.fr       */
+/*   Updated: 2022/02/13 13:28:00 by dcano-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h" 
@@ -57,18 +57,21 @@ static	int	digits_n(unsigned int n)
 	return (i);
 }
 
+int	print_zero(int fd)
+{
+	write(fd, "0", 1);
+	return (1);
+}
+
 int	ft_puthexlower_fd(unsigned int n, int fd)
 {
 	unsigned int	copy;
-	int		i;
-	int		res;
-	
+	int				i;
+	int				res;
+
 	res = 0;
 	if (n == 0)
-	{
-		write(fd, "0", 1);
-		return (1);
-	}	
+		return (print_zero(fd));
 	copy = reverse (n);
 	i = digits_n(n);
 	while (copy != 0)

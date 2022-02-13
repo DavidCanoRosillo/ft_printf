@@ -6,10 +6,10 @@
 /*   By: dcano-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:00:24 by dcano-ro          #+#    #+#             */
-/*   Updated: 2022/01/28 18:18:31 by dcano-ro         ###   ########.fr       */
+/*   Updated: 2022/02/13 13:26:16 by dcano-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h" 
+#include <unistd.h>
 
 static void	ft_puthex_lower(unsigned long nbr)
 {
@@ -44,7 +44,7 @@ static long	reverse(unsigned long num)
 	return (rev_num);
 }
 
-static	int	digits_n(unsigned long n)
+static int	digits_n(unsigned long n)
 {
 	int	i;
 
@@ -57,18 +57,21 @@ static	int	digits_n(unsigned long n)
 	return (i);
 }
 
-int	ft_category_p_fd(unsigned long  n, int fd)
+static int	print_zero(int fd)
+{
+	write(fd, "0", 1);
+	return (1);
+}
+
+int	ft_category_p_fd(unsigned long n, int fd)
 {
 	unsigned long	copy;
-	int		i;
-	int		res;
-	
+	int				i;
+	int				res;
+
 	res = 0;
 	if (n == 0)
-	{
-		write(fd, "0", 1);
-		return (1);
-	}	
+		return (print_zero(fd));
 	copy = reverse (n);
 	i = digits_n(n);
 	while (copy != 0)
