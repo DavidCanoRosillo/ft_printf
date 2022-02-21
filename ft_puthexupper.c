@@ -6,24 +6,24 @@
 /*   By: dcano-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 17:30:52 by dcano-ro          #+#    #+#             */
-/*   Updated: 2022/02/13 13:29:50 by dcano-ro         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:22:52 by dcano-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static void	ft_puthex_lower(int nbr)
+static void	ft_puthex_upper(int nbr)
 {
-	char	lower_hex[6];
+	char	upper_hex[6];
 	char	c;
 
-	lower_hex[0] = 'A';
-	lower_hex[1] = 'B';
-	lower_hex[2] = 'C';
-	lower_hex[3] = 'D';
-	lower_hex[4] = 'E';
-	lower_hex[5] = 'F';
+	upper_hex[0] = 'A';
+	upper_hex[1] = 'B';
+	upper_hex[2] = 'C';
+	upper_hex[3] = 'D';
+	upper_hex[4] = 'E';
+	upper_hex[5] = 'F';
 	if (nbr >= 10)
-		write(1, lower_hex + nbr - 10, 1);
+		write(1, upper_hex + nbr - 10, 1);
 	else
 	{
 		c = nbr + 48;
@@ -76,14 +76,14 @@ int	ft_puthexupper_fd(unsigned int n, int fd)
 	i = digits_n(n);
 	while (copy != 0)
 	{
-		ft_puthex_lower(copy % 16);
+		ft_puthex_upper(copy % 16);
 		copy = copy / 16;
 		i--;
 		res++;
 	}
 	while (i > 0)
 	{
-		ft_puthex_lower(0);
+		ft_puthex_upper(0);
 		res++;
 		i--;
 	}
